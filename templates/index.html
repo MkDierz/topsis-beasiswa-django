@@ -1,0 +1,50 @@
+{% extends '_base.html' %}
+{% block title %}
+Index
+{% endblock title %}
+
+{% block content %}
+<div class="bg-base-100 shadow-xl m-4 p-4">
+    <div class="overflow-x-auto">
+        <table id="dataTable" class="table table-zebra w-full">
+            <!-- head -->
+            <thead>
+                <tr>
+                    {% for f in field_names %}
+                    <th>{{f}}</th>
+                    {% endfor %}
+                    <th>Rank Kecocokan Beasiswa</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- row 1 -->
+                {% for d in data %}
+                <tr>
+                    <th>{{ d.id }}</th>
+                    <td>{{ d.nama }}</td>
+                    <td>{{ d.nilai_rata_rata }}</td>
+                    <td>{{ d.get_penghasilan_display }}</td>
+                    <td>{{ d.get_tanggungan_display }}</td>
+                    <td>{{ d.get_organisasi_display }}</td>
+                    <td>{{ d.best_similarity_rank }}</td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}
+{% block style %}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+{% endblock style %}
+{% block script %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#dataTable').DataTable();
+
+    });
+</script>
+{% endblock script %}

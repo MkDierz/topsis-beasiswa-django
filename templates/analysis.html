@@ -1,0 +1,53 @@
+{% extends '_base.html' %}
+{% block title %}
+ANALISIS
+{% endblock title %}
+
+{% block content %}
+<div class="bg-base-100 shadow-xl m-4 p-4">
+    <div class="overflow-x-auto">
+        <table class="table table-zebra w-full" id="dataTable">
+            <!-- head -->
+            <thead>
+                <tr>
+                    <th>Nama</th>
+                    <th>best_distance</th>
+                    <th>worst_distance</th>
+                    <th>worst_similarity</th>
+                    <th>worst_similarity_rank</th>
+                    <th>best_similarity</th>
+                    <th>best_similarity_rank</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- row 1 -->
+                {% for d in data %}
+                <tr>
+                    <th>{{ d.nama }}</th>
+                    <td>{{ d.best_distance }}</td>
+                    <td>{{ d.worst_distance }}</td>
+                    <td>{{ d.worst_similarity }}</td>
+                    <td>{{ d.worst_similarity_rank }}</td>
+                    <td>{{ d.best_similarity }}</td>
+                    <td>{{ d.best_similarity_rank }}</td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}
+{% block style %}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+{% endblock style %}
+{% block script %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#dataTable').DataTable();
+
+    });
+</script>
+{% endblock script %}
